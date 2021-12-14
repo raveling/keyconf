@@ -31,4 +31,21 @@ model Post {
   status                  String?   @default("draft")
   content                 String    @default("[{\"type\":\"paragraph\",\"children\":[{\"text\":\"\"}]}]")
   publishDate             DateTime?
+  relatedPosts            Post[]    @relation("Post_relatedPosts")
+  from_Post_relatedPosts  Post[]    @relation("Post_relatedPosts")
+}
+
+model Page {
+  id                      String  @id @default(cuid())
+  title                   String  @default("")
+  summary                 String  @default("")
+  includeHeader           Boolean @default(false)
+  featuredImage_filesize  Int?
+  featuredImage_extension String?
+  featuredImage_width     Int?
+  featuredImage_height    Int?
+  featuredImage_mode      String?
+  featuredImage_id        String?
+  status                  String? @default("draft")
+  content                 String  @default("[{\"type\":\"paragraph\",\"children\":[{\"text\":\"\"}]}]")
 }
